@@ -1,11 +1,23 @@
 from flask import render_template, session, request, redirect, url_for, flash
-
+from apps.sanpham.models import addsp,Category
 from apps import app, db, bcrypt
 from .forms import RegistrationForm, LoginForm
 from .models import User
 @app.route('/')
 def admin():
-    return render_template('admin/index.html',title="Admin Page")
+    if 'username' not in session:
+        flash(f'please login first','danger')
+        return redirect(url_for('login'))
+    sanpham = addsp.query.all()
+    return render_template('admin/index.html',title="Admin Page",sanpham=sanpham)
+
+@app.route('/categories')
+def categories():
+    if 'username' not in session:
+        flash(f'please login first','danger')
+        return redirect(url_for('login'))
+    categories = Category.query.order_by(Category.id.desc()).all()
+    return render_template('admin/categories.html', title='categories',categories=categories)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
