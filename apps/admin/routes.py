@@ -5,17 +5,21 @@ from .forms import RegistrationForm, LoginForm
 from .models import User
 @app.route('/')
 def admin():
+    #bắt đầu minh code#
     if 'username' not in session:
         flash(f'please login first','danger')
         return redirect(url_for('login'))
+    #kết thúc#
     sanpham = addsp.query.all()
     return render_template('admin/index.html',title="Admin Page",sanpham=sanpham)
 
 @app.route('/categories')
 def categories():
+    #bắt đầu minh code#
     if 'username' not in session:
         flash(f'please login first','danger')
         return redirect(url_for('login'))
+    #kết thúc#
     categories = Category.query.order_by(Category.id.desc()).all()
     return render_template('admin/categories.html', title='categories',categories=categories)
 
@@ -45,3 +49,8 @@ def login():
             flash('Wrong Password please try again','danger')
             
     return render_template('admin/login.html', form=form, title="Login now!")
+
+@app.route('/logout')
+def logout():
+    session.pop('username')
+    return redirect(url_for('login'))

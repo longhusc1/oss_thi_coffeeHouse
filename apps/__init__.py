@@ -23,3 +23,4 @@ bcrypt = Bcrypt(app)
 
 from apps.admin import routes
 from apps.sanpham import routes
+from apps.cart import cart

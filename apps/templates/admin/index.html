@@ -2,25 +2,32 @@
 {% block content %}
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Coffee House</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="#">sản phẩm <span class="sr-only">(current)</span></a>
+              <a class="nav-link mx-5" href="#">Sản phẩm <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/categories">Loại</a>
+              <a class="nav-link mx-5" href="/categories">Loại</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Add products
+            <li class="nav-item">
+              <a class="nav-link mx-5" href="#">Duyệt</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-5" href="#">Khách hàng</a>
+            </li>
+            <li class="nav-item dropdown" style="margin-left: 25px;">
+              <a class="nav-link dropdown-toggle mx-5" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Lựa chọn
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="{{url_for('addSp')}}">Thêm sản phẩm</a>
                 <a class="dropdown-item" href="{{url_for('addCate')}}">Thêm loại</a>
+                <a class="dropdown-item" href="{{url_for('logout')}}">Đăng xuất</a>
               </div>
             </li>
           </ul>
@@ -50,8 +57,8 @@
             <td>{{ sp.name }}</td>
             <td><a>{{sp.category.name}}</a></td>
             <td>{{ sp.price }}</td>
-            <td> <a href="{{url_for('updateSp', id=sp.id)}}" class="btn btn-sm btn-info">Edit </a> </td>
-            <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal-{{sp.id}}">
+            <td> <a href="{{url_for('updateSp', id = sp.id)}}" class="btn btn-sm btn-info">Edit </a> </td>
+            <td><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal-{{sp.id}}">
               Delete  
             </button></td>
           </tr>
@@ -71,7 +78,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <form action="#" method="post">
+                <form action="{{url_for('deletesp',id=sp.id)}}" method="post">
                   <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
                 
