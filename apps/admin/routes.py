@@ -3,6 +3,7 @@ from apps.sanpham.models import addsp,Category
 from apps import app, db, bcrypt
 from .forms import RegistrationForm, LoginForm
 from .models import User
+from apps.khachhang.models import Khachhang
 @app.route('/')
 def admin():
     #bắt đầu minh code#
@@ -54,3 +55,13 @@ def login():
 def logout():
     session.pop('username')
     return redirect(url_for('login'))
+
+@app.route('/khach')
+def khach():
+    #bắt đầu minh code#
+    if 'username' not in session:
+        flash(f'please login first','danger')
+        return redirect(url_for('login'))
+    #kết thúc#
+    khach = Khachhang.query.order_by(Khachhang.id.desc()).all()
+    return render_template('admin/khach.html', title='khach',khach=khach)

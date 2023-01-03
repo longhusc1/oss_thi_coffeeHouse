@@ -1,0 +1,31 @@
+{% extends "layout.html"%}
+
+{% block content %}
+
+<div class="container"> 
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% include "_messages.html" %}
+            <h1 class="text-cenetr mt-5">Sửa thông tin cá nhân</h1>
+            <form action="" method="post">
+                <p>Họ và tên</p>
+                <input type="text" name="name" class="form-control mb-2" value="{{thongtincanhan.name}}">
+                <p>Số ĐT</p>
+                <input type="text" name="phone" class="form-control mb-2" value="{{thongtincanhan.phone}}">
+                <p>Địa chỉ</p>
+                <input type="text" name="address" class="form-control mb-2" value="{{thongtincanhan.address}}">
+                <p>Mật khẩu mới</p>
+                <input type="password" name="matkhau" class="form-control mb-2" value="">
+                <p>Nhập lại mật khẩu</p>
+                <input type="password" name="mk" class="form-control mb-2" value="">
+                <input type="submit" class="btn btn-info mt-2" value="Thay đổi">
+            </form>
+            <a href="{{url_for('home')}}" class="btn btn-warning" style="margin-top: -65px;margin-left: 140px;">Hủy</a>
+            
+        </div>
+        <div class="col-ml-3"></div>
+    </div>
+</div>
+
+{% endblock content %}

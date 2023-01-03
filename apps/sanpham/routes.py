@@ -12,6 +12,12 @@ def home():
     category = Category.query.join(addsp, (Category.id == addsp.category_id)).all()
     return render_template('sanpham/index.html',sanpham=sanpham, category=category)
 
+# @app.route('result')
+# def result():
+#     key = request.args.get('a')
+#     sanpham = addsp.query.msearch(key, fields = ['name','desc'], limit=3)
+#     return render_template('sanpham/result.html',sanpham=sanpham)
+
 @app.route('/category/<int:id>')
 def get_category(id):
     cate = addsp.query.filter_by(category_id=id)
